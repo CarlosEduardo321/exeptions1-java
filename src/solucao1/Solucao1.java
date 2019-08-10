@@ -47,13 +47,10 @@ public class Solucao1 {
             System.out.print("Check-out date (dd/MM/yyyy)");
             checkOut = sdf.parse(sc.next());
 
-            Date now = new Date();
-            if (checkIn.before(now) || checkOut.before(now)) {
-                System.out.println("Error in reservation: Reservation dates for update mush be future");
-            } else if (!checkOut.after(checkIn)) {
-                System.out.println("Error in reservation: Check-out date much be after check-in date");
+            String erro = reservation.updateDates(checkIn, checkOut);
+            if (erro != null) {
+                System.out.println("Error in reservation: " + erro);
             } else {
-
                 reservation.updateDates(checkIn, checkOut);
                 System.out.println("Resevation: " + reservation);
             }
